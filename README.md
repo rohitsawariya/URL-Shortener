@@ -3,14 +3,10 @@
 > A simple and responsive URL Shortener Web App that allows users to generate shortened links instantly and track their usage.
 
 ## 📖 Table of Contents
-- [About the Project](#about-the-project)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Screenshots](#screenshots)
-- [Getting Started](#getting-started)
-- [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
-- [License](#license)
+- [About the Project](#-about-the-project)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Screenshots](#-screenshots)
 
 ---
 
@@ -46,10 +42,33 @@ The **URL's History** page contains:
 
 ---
 
-## 📸 Screenshots
+## 📸 Screenshots  
 
-**Home Page**  
-![Home Page](docs/homepage.png)
+### 🏠 Home Page  
+A clean and minimal interface with a navigation bar and URL input box for shortening links.  
+![Home Page](URL_Shortner/Screenshots/Homepage.png)  
 
-**URL's History Page**  
-![History Page](docs/history.png)
+---
+
+### 🔗 URL Shortening in Action  
+Instantly generates a short link after submitting a long URL.  
+![Home Page](URL_Shortner/Screenshots/ShortenURL.png)  
+
+---
+
+### 📜 URL History Page  
+Displays a styled table with all previously shortened URLs, their redirect destinations, and visit counts.  
+![History Page](URL_Shortner/Screenshots/URL%20list.png)  
+
+---
+
+### ✨ Clickable Short URLs  
+Clicking on a short URL redirects to the original link.  
+![History Page](URL_Shortner/Screenshots/Click%20URL.png)  
+
+---
+
+### ⏱ Visit History with Timestamp  
+Track when each shortened link was accessed with date and time.  
+![History Page](URL_Shortner/Screenshots/Visit%20history.png)  
+
