@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react'
 
 function History() {
   const [urls, setUrls] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("http://localhost:8000/")
       .then((res) => res.json())
       .then((data) => setUrls(data));
+      setLoading(false);
   }, [urls]);
 
   const handleRedirect = (url) => {
@@ -35,41 +37,49 @@ function History() {
         </tr>
       </thead>
       <tbody>
-        {urls.map((url) => (
-          <tr
-            key={url._id}
-            className="border-b hover:bg-gradient-to-r hover:from-teal-50 hover:to-green-50 transition-all duration-200"
-          >
-            <td
-              className="px-6 py-4 text-xl text-blue-600 cursor-pointer font-semibold hover:text-orange-500 hover:underline"
-              onClick={() => handleRedirect(url.shortUrl)}
-            >
-              {url.shortUrl}
-            </td>
-            <td className="px-6 py-4 text-lg text-gray-700">{url.redirectUrl}</td>
-            <td className="px-6 py-4 text-lg text-gray-700">
-              {url.visited && url.visited.length > 0 ? (
-                <div className="space-y-1 text-sm text-gray-500">
-                  {url.visited.map((visit, index) => (
-                    <div key={index}>
-                      {new Date(visit.timestamp).toLocaleString()}
+              {loading ? (
+                <tr>
+                  <td colSpan="3" className="px-6 py-8">
+                    <div className="flex justify-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
                     </div>
-                  ))}
-                </div>
+                  </td>
+                </tr>
               ) : (
-                <span className="italic text-gray-400">No visits</span>
+                urls.map((url) => (
+                  <tr
+                    key={url._id}
+                    className="border-b hover:bg-gradient-to-r hover:from-teal-50 hover:to-green-50 transition-all duration-200"
+                  >
+                    <td
+                      className="px-6 py-4 text-xl text-blue-600 cursor-pointer font-semibold hover:text-orange-500 hover:underline"
+                      onClick={() => handleRedirect(url.shortUrl)}
+                    >
+                      {url.shortUrl}
+                    </td>
+                    <td className="px-6 py-4 text-lg text-gray-700">{url.redirectUrl}</td>
+                    <td className="px-6 py-4 text-lg text-gray-700">
+                      {url.visited && url.visited.length > 0 ? (
+                        <div className="space-y-1 text-sm text-gray-500">
+                          {url.visited.map((visit, index) => (
+                            <div key={index}>
+                              {new Date(visit.timestamp).toLocaleString()}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="italic text-gray-400">No visits</span>
+                      )}
+                    </td>
+                  </tr>
+                ))
               )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default History
+export default History;
